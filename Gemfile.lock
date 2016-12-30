@@ -153,6 +153,7 @@ DEPENDENCIES
   listen
   puma (~> 3.0)
   rails (~> 5.0.1)
+  rake
   rspec-rails
   tzinfo-data
 
