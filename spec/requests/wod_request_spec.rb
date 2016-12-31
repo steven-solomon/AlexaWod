@@ -2,8 +2,8 @@ require 'rails_helper'
 
 describe 'wod request', type: :request do
   it 'returns wod' do
-    stub_request(:any, 'http://www.crossfitsouthbrooklyn.com/').
-      to_return(body: File.new('./spec/test_data/rest_day.html'), status: 200)
+    stub_request(:any, 'http://crossfitsouthbrooklyn.com/workout-of-the-day/rss.xml').
+      to_return(body: File.new('./spec/test_data/rest_day.rss'), status: 200)
 
     post '/wod', json_data
 
