@@ -1,4 +1,5 @@
 class WodController < ApplicationController
-  def index
+  def create
+    @wod_name = WodRepo.wod
   end
 end
