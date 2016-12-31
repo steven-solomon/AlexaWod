@@ -1,17 +1,23 @@
 describe WodRepo do
-  it 'parses rest day' do
+  before do
     stub_request(:any, 'http://crossfitsouthbrooklyn.com/workout-of-the-day/rss.xml').
-      to_return(body: File.new('./spec/test_data/rest_day.rss'), status: 200)
-
-    wod_name = WodRepo.wod
-    expect(wod_name).to eql("Rest Day")
+      to_return(body: File.new(work_out_file), status: 200)
   end
 
-  it 'parses cleans' do
-    stub_request(:any, 'http://crossfitsouthbrooklyn.com/workout-of-the-day/rss.xml').
-      to_return(body: File.new('./spec/test_data/cleans.rss'), status: 200)
+  context 'when it is rest day' do
+    let(:work_out_file) { './spec/test_data/rest_day.rss' }
 
-    wod_name = WodRepo.wod
-    expect(wod_name).to eql("Clean Metcon")
+    it 'returns rest day' do
+      expect(WodRepo.wod).to eql("Rest Day")
+    end
+  end
+
+  context 'when it is cleans day' do
+    let(:work_out_file) { './spec/test_data/cleans.rss' }
+
+    it 'parses cleans' do
+      wod_name = WodRepo.wod
+      expect(wod_name).to eql("Clean Metcon")
+    end
   end
 end
