@@ -8,6 +8,6 @@ class WodRepo
   end
 
   def self.string_from_html(page)
-    page.css('h2.title')[0].text.squish
+    page.css('h2.title')[0].text.split('|').first.squish
   end
 end
